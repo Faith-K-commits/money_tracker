@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users, email',
+            'email' => 'required|email|unique:users,email',
         ]);
 
         $user = User::create($request->only('name', 'email'));

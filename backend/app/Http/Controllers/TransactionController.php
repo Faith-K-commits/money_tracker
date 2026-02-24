@@ -10,8 +10,8 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'wallet_id' => 'required}exists:wallets, id',
-            'type' => 'required|in:income, expense',
+            'wallet_id' => 'required|exists:wallets,id',
+            'type' => 'required|in:income,expense',
             'amount' => 'required|numeric|min:0.01',
             'description' => 'nullable|string',
         ]);
