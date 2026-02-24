@@ -20,18 +20,27 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::with('wallets.transactions')->findOrFail($id);
+        $user = User::findOrFail($id);
 
+        // Get wallets with their balances
+        $wallets = $user->wallets->map(function ($wallet) {
+            return [
+                'id' => $wallet->id,
+                'name' => $wallet->name,
+                'balance' => $wallet->balance,
+            ];
+        });
+        $totalBalance = $wallets->sum('balance');
         return response()->json([
-            'user' => $user,
-            'wallets' => $user->wallets->map(function ($wallet) {
-                return [
-                    'id' => $wallet->id,
-                    'name' => $wallet->name,
-                    'balance' => $wallet->balance,
-                ];
-            }),
-            'total_balance' => $user->total_balance
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+            ],
+            'wallets' => $wallets,
+            'total_balance' => $totalBalance
         ]);
     }
 }

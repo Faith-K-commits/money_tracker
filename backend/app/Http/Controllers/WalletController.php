@@ -20,10 +20,9 @@ class WalletController extends Controller
 
     public function show($id)
     {
-        $wallet = Wallet::with('transactions')->findOrFail($id);
+        $wallet = Wallet::findOrFail($id);
 
         return response()->json([
-            'wallet' => $wallet,
             'balance' => $wallet->balance,
             'transactions' => $wallet->transactions
         ]);
