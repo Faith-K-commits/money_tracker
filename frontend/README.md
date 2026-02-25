@@ -6,6 +6,7 @@ A responsive single-page web application built for Fourfront Management, showcas
 
 - [Overview](#overview)
 - [Features](#features)
+- [Demo Video](#demo-video)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
@@ -66,6 +67,16 @@ This project is a modern, mobile-responsive web application. It features user pr
 - Copyright information
 - Rounded bottom corners
 - Responsive design
+
+## Demo Video
+
+Watch a full walkthrough of the application showcasing all features including responsive navigation, user profiles, membership options, interactive modal, and contact form validation.
+
+https://github.com/Faith-K-commits/money_tracker/assets/video.mp4
+
+<video src="assets/video.mp4" controls width="100%" style="max-width: 800px;">
+  Your browser does not support the video tag. <a href="assets/video.mp4">Download the video</a>
+</video>
 
 ## Technologies Used
 
