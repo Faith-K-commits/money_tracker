@@ -72,7 +72,7 @@ This project is a modern, mobile-responsive web application. It features user pr
 
 Watch a full walkthrough of the application showcasing all features including responsive navigation, user profiles, membership options, interactive modal, and contact form validation.
 
-https://github.com/Faith-K-commits/money_tracker/assets/video.mp4
+https://drive.google.com/file/d/11nbGI_KDmKNwa-60YQb3y5jEow5Cnbcp/view?usp=sharing
 
 <video src="assets/video.mp4" controls width="100%" style="max-width: 800px;">
   Your browser does not support the video tag. <a href="assets/video.mp4">Download the video</a>
