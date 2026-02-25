@@ -9,76 +9,92 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
     <title>Document</title>
   </head>
   <body class="m-2">
     <div class="card bg-secondary p-2">
       <div
-        class="card text-center shadow-sm bg-secondary text-white border border-warning"
+        class="card shadow-sm bg-secondary text-white border border-warning p-3"
       >
-        <img
-          class="rounded-circle mx-auto mt-3"
-          width="80"
-          src="assets/images/doe.jpg"
-          alt="User Avatar"
-        />
-        <h5 class="mt-2">Jane</h5>
-        <p class="small px-2">
-          You've officially joined your first investment knowledge club!
-        </p>
+        <div class="d-flex align-items-start">
+          <img
+            class="rounded-circle"
+            width="80"
+            src="assets/images/doe.jpg"
+            alt="User Avatar"
+          />
+          <div class="ms-3 flex-grow-1">
+            <h5 class="mb-2">Jane</h5>
+            <p class="small mb-0">
+              You've officially joined your first investment knowledge club!
+            </p>
+          </div>
+        </div>
       </div>
       <div class="row g-3 mt-3">
         <div class="col-6">
-          <div class="card text-center p-2 bg-warning-subtle">
-            <img
-              class="rounded-circle mx-auto mb-2"
-              width="50"
-              src="assets/images/doe.jpg"
-              alt="User Avatar"
-            />
-            <h6>150</h6>
-            <small>Jon Doe</small>
+          <div class="card p-2 bg-warning-subtle">
+            <div class="d-flex align-items-center mb-2">
+              <img
+                class="rounded-circle"
+                width="40"
+                src="assets/images/male-avatr.jpg"
+                alt="User Avatar"
+              />
+              <small class="ms-2 fw-semibold">Jon Doe</small>
+            </div>
+            <h6 class="text-center mb-0 fw-bold">150</h6>
           </div>
         </div>
         <div class="col-6">
-          <div class="card text-center p-2 bg-info-subtle">
-            <img
-              class="rounded-circle mx-auto mb-2"
-              width="50"
-              src="assets/images/doe.jpg"
-              alt="User Avatar"
-            />
-            <h6>200</h6>
-            <small>Jane Smith</small>
+          <div class="card p-2 bg-info-subtle">
+            <div class="d-flex align-items-center mb-2">
+              <img
+                class="rounded-circle"
+                width="40"
+                src="assets/images/doe.jpg"
+                alt="User Avatar"
+              />
+              <small class="ms-2 fw-semibold">Jane Smith</small>
+            </div>
+            <h6 class="text-center mb-0 fw-bold">200</h6>
           </div>
         </div>
         <div class="col-6">
-          <div class="card text-center p-2 bg-success-subtle">
-            <img
-              class="rounded-circle mx-auto mb-2"
-              width="50"
-              src="assets/images/doe.jpg"
-              alt="User Avatar"
-            />
-            <h6>175</h6>
-            <small>Bob Johnson</small>
+          <div class="card p-2 bg-success-subtle">
+            <div class="d-flex align-items-center mb-2">
+              <img
+                class="rounded-circle"
+                width="40"
+                src="assets/images/male-avatr.jpg"
+                alt="User Avatar"
+              />
+              <small class="ms-2 fw-semibold">Bob Johnson</small>
+            </div>
+            <h6 class="text-center mb-0 fw-bold">175</h6>
           </div>
         </div>
         <div class="col-6">
-          <div class="card text-center p-2 bg-danger-subtle">
-            <img
-              class="rounded-circle mx-auto mb-2"
-              width="50"
-              src="assets/images/doe.jpg"
-              alt="User Avatar"
-            />
-            <h6>225</h6>
-            <small>Alice Brown</small>
+          <div class="card p-2 bg-danger-subtle">
+            <div class="d-flex align-items-center mb-2">
+              <img
+                class="rounded-circle"
+                width="40"
+                src="assets/images/doe.jpg"
+                alt="User Avatar"
+              />
+              <small class="ms-2 fw-semibold">Alice Brown</small>
+            </div>
+            <h6 class="text-center mb-0 fw-bold">225</h6>
           </div>
         </div>
       </div>
     </div>
-    <div class="card mt-2 p-3 bg-secondary">
+    <div class="card mt-2 p-2 bg-secondary">
       <h6 class="text-warning">Now let's make you great</h6>
       <p class="small mb-0 text-warning">
         You have shown us where you are doing well and where we can support you
@@ -89,16 +105,18 @@
         you best and start your financial adventure
       </p>
     </div>
-    <div class="card bg-warning p-3 mt-2">
+    <div class="card border-0 py-3 mt-2">
       <h6
-        class="text-white bg-warning"
+        class="text-white bg-warning p-2 mb-0 rounded-top"
         style="cursor: pointer"
         onclick="toggleMembership(this)"
       >
-        FOUNDATION <span>MEMBERSHIP</span>
+        FOUNDATION <span class="small">MEMBERSHIP</span>
       </h6>
 
-      <div class="membership-details d-none mt-2 bg-secondary text-white p-2">
+      <div
+        class="membership-details d-none bg-secondary text-white p-2 rounded-bottom"
+      >
         <p class="small">
           We invest for you, in shares and in the Mansa-X global fund. Service
           is free online with your personal representative, but service in the
@@ -106,16 +124,18 @@
         </p>
       </div>
     </div>
-    <div class="card bg-warning p-3 mt-2">
+    <div class="card border-0 py-3 mt-2">
       <h6
-        class="text-white bg-warning"
+        class="text-white bg-primary-subtle p-2 mb-0 rounded-top"
         style="cursor: pointer"
         onclick="toggleMembership(this)"
       >
-        ECONOMY <span>MEMBERSHIP</span>
+        ECONOMY <span class="small">MEMBERSHIP</span>
       </h6>
 
-      <div class="membership-details d-none mt-2 bg-secondary text-white p-2">
+      <div
+        class="membership-details d-none bg-secondary text-white p-2 rounded-bottom"
+      >
         <p class="small">
           We will invest your money for you at a guarantted rate with the
           Mansa-X global fund. Service is free online with your personal
@@ -123,11 +143,127 @@
         </p>
       </div>
     </div>
+    <div class="card text-white bg-warning p-2">
+      <p class="small">
+        A closer look at the membership details is available
+        <a
+          href="#"
+          class="text-white text-decoration-none"
+          onclick="openMembershipModal(event)"
+          >here</a
+        >.
+      </p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="card border-0 p-3 mt-2">
+      <h6 class="text-dark mb-3">Quick Inquiry</h6>
+      <form id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="mb-2">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="nameInput"
+            placeholder="Your Name"
+            required
+          />
+          <small class="text-danger d-none" id="nameError"
+            >Name is required</small
+          >
+        </div>
+        <div class="mb-2">
+          <input
+            type="email"
+            class="form-control form-control-sm"
+            id="emailInput"
+            placeholder="Your Email"
+            required
+          />
+          <small class="text-danger d-none" id="emailError"
+            >Valid email is required</small
+          >
+        </div>
+        <div class="mb-2">
+          <textarea
+            class="form-control form-control-sm"
+            id="messageInput"
+            rows="3"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <small class="text-danger d-none" id="messageError"
+            >Message is required</small
+          >
+        </div>
+        <button type="submit" class="btn btn-warning btn-sm w-100">
+          Send Inquiry
+        </button>
+      </form>
+    </div>
+
+    <!-- Modal for Membership Details -->
+    <div
+      class="modal fade"
+      id="membershipModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-warning text-white">
+            <h5 class="modal-title">Membership Comparison</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              onclick="closeMembershipModal()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h6 class="text-warning">Foundation Membership</h6>
+            <ul class="small">
+              <li>Investment in shares and Mansa-X global fund</li>
+              <li>Free online service with personal representative</li>
+              <li>Office service may have extra charges</li>
+              <li>Ideal for beginners</li>
+            </ul>
+            <hr />
+            <h6 class="text-primary">Economy Membership</h6>
+            <ul class="small">
+              <li>Investment in Mansa-X global fund at guaranteed rate</li>
+              <li>Free online service with personal representative</li>
+              <li>Office service may have extra charges</li>
+              <li>Lower risk option</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              onclick="closeMembershipModal()"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-warning btn-sm">
+              Apply Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer
-      class="card mt-4 bg-warning text-white rounded-bottom p-3 border-top border-warning-subtle"
+      class="app-footer bg-warning text-white text-center mt-2 rounded-bottom small position-relative p-3"
     >
-      Fourfront Management &copy; 2025. All rights reserved.
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        class="position-absolute top-0 end-0 mt-2 me-2 text-success"
+      >
+        <i class="bi bi-whatsapp fs-5"></i>
+      </a>
+      <div class="container">
+        Fourfront Management &copy; 2026. All rights reserved.
+      </div>
     </footer>
     <script src="js/script.js"></script>
   </body>
