@@ -138,8 +138,48 @@ window.addEventListener("keydown", function (event) {
   }
 });
 
+// Toggle mobile menu
+function toggleMenu() {
+  const navbarMenu = document.getElementById("navbarMenu");
+  navbarMenu.classList.toggle("show");
+}
+
+// Smooth scroll to section
+function smoothScroll(event, sectionId) {
+  event.preventDefault();
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // Close mobile menu if open
+    const navbarMenu = document.getElementById("navbarMenu");
+    if (navbarMenu.classList.contains("show")) {
+      navbarMenu.classList.remove("show");
+    }
+  }
+}
+
+// Close mobile menu when clicking outside
+window.addEventListener("click", function (event) {
+  const navbarMenu = document.getElementById("navbarMenu");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  if (
+    navbarMenu.classList.contains("show") &&
+    !navbarMenu.contains(event.target) &&
+    !toggler.contains(event.target)
+  ) {
+    navbarMenu.classList.remove("show");
+  }
+});
+
 // Expose functions to global scope
 window.toggleMembership = toggleMembership;
 window.openMembershipModal = openMembershipModal;
 window.closeMembershipModal = closeMembershipModal;
 window.handleFormSubmit = handleFormSubmit;
+window.toggleMenu = toggleMenu;
+window.smoothScroll = smoothScroll;
