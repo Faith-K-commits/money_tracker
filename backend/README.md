@@ -1,59 +1,387 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Money Tracker API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful API for managing personal finances, built with Laravel 12. Track income and expenses across multiple wallets, and monitor your financial health with ease.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Database Schema](#-database-schema)
+- [API Endpoints](#-api-endpoints)
+- [Usage Examples](#-usage-examples)
+- [Testing](#-testing)
+- [Project Structure](#-project-structure)
+- [License](#-license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **User Management**: Create and manage user accounts
+- **Multi-Wallet Support**: Create multiple wallets per user for different purposes (e.g., savings, checking, cash)
+- **Transaction Tracking**: Record income and expense transactions with detailed descriptions
+- **Automatic Balance Calculation**: Real-time balance computation for each wallet
+- **Total Balance Overview**: Get aggregated balance across all user wallets
+- **RESTful API**: Clean and intuitive API endpoints
+- **Data Validation**: Robust request validation to ensure data integrity
+- **Laravel Sanctum**: API authentication support (ready for token-based auth)
 
-## Learning Laravel
+## Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **Framework**: Laravel 12.x
+- **PHP**: 8.2+
+- **Database**: MySQL
+- **Authentication**: Laravel Sanctum 4.x
+- **Code Quality**: Laravel Pint (PHP CS Fixer)
+- **Package Manager**: Composer 2.x
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Prerequisites
 
-## Laravel Sponsors
+Before you begin, ensure you have the following installed:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **PHP** >= 8.2
+- **Composer** >= 2.0
+- **SQLite** (default) or MySQL/PostgreSQL
 
-### Premium Partners
+## Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Clone the Repository
 
-## Contributing
+```bash
+git clone https://github.com/Faith-K-commits/money_tracker.git
+cd money_tracker/backend
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Install Dependencies
 
-## Code of Conduct
+```bash
+# Install PHP dependencies
+composer install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Install Node.js dependencies
+npm install
+```
 
-## Security Vulnerabilities
+### 3. Environment Configuration
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+# Copy the example environment file
+cp .env.example .env
 
-## License
+# Generate application key
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. Database Setup
+
+The project uses SQLite by default. To use a different database, update the `.env` file:
+
+```env
+# For MySQL
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=money_tracker
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+Run migrations to create the database tables:
+
+```bash
+php artisan migrate
+```
+
+### 5. Start the Development Server
+
+Or start services individually:
+
+```bash
+# Start the Laravel development server
+php artisan serve
+```
+
+The API will be available at `http://localhost:8000`
+
+## Database Schema
+
+### Users Table
+
+| Column     | Type      | Description           |
+| ---------- | --------- | --------------------- |
+| id         | bigint    | Primary key           |
+| name       | string    | User's full name      |
+| email      | string    | Unique email address  |
+| password   | string    | Hashed password       |
+| created_at | timestamp | Creation timestamp    |
+| updated_at | timestamp | Last update timestamp |
+
+### Wallets Table
+
+| Column     | Type      | Description                           |
+| ---------- | --------- | ------------------------------------- |
+| id         | bigint    | Primary key                           |
+| user_id    | bigint    | Foreign key to users table            |
+| name       | string    | Wallet name (e.g., "Savings", "Cash") |
+| created_at | timestamp | Creation timestamp                    |
+| updated_at | timestamp | Last update timestamp                 |
+
+### Transactions Table
+
+| Column      | Type              | Description                             |
+| ----------- | ----------------- | --------------------------------------- |
+| id          | bigint            | Primary key                             |
+| wallet_id   | bigint            | Foreign key to wallets table            |
+| type        | enum              | Transaction type: 'income' or 'expense' |
+| amount      | decimal(12,2)     | Transaction amount                      |
+| description | string (nullable) | Transaction description                 |
+| created_at  | timestamp         | Creation timestamp                      |
+| updated_at  | timestamp         | Last update timestamp                   |
+
+## API Endpoints
+
+### Users
+
+#### Create User
+
+```http
+POST /api/users
+```
+
+**Request Body:**
+
+```json
+{
+    "name": "John Doe",
+    "email": "john@example.com"
+}
+```
+
+**Response:** `201 Created`
+
+```json
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "created_at": "2026-02-25T10:30:00.000000Z",
+    "updated_at": "2026-02-25T10:30:00.000000Z"
+}
+```
+
+#### Get User Details
+
+```http
+GET /api/users/{id}
+```
+
+**Response:** `200 OK`
+
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "created_at": "2026-02-25T10:30:00.000000Z",
+        "updated_at": "2026-02-25T10:30:00.000000Z"
+    },
+    "wallets": [
+        {
+            "id": 1,
+            "name": "Savings Account",
+            "balance": 5000.0
+        },
+        {
+            "id": 2,
+            "name": "Cash",
+            "balance": 250.0
+        }
+    ],
+    "total_balance": 5250.0
+}
+```
+
+### Wallets
+
+#### Create Wallet
+
+```http
+POST /api/wallets
+```
+
+**Request Body:**
+
+```json
+{
+    "user_id": 1,
+    "name": "Savings Account"
+}
+```
+
+**Response:** `201 Created`
+
+```json
+{
+    "id": 1,
+    "user_id": 1,
+    "name": "Savings Account",
+    "created_at": "2026-02-25T10:35:00.000000Z",
+    "updated_at": "2026-02-25T10:35:00.000000Z"
+}
+```
+
+#### Get Wallet Details
+
+```http
+GET /api/wallets/{id}
+```
+
+**Response:** `200 OK`
+
+```json
+{
+    "balance": 5000.0,
+    "transactions": [
+        {
+            "id": 1,
+            "wallet_id": 1,
+            "type": "income",
+            "amount": 5000.0,
+            "description": "Monthly salary",
+            "created_at": "2026-02-25T10:40:00.000000Z",
+            "updated_at": "2026-02-25T10:40:00.000000Z"
+        }
+    ]
+}
+```
+
+### Transactions
+
+#### Create Transaction
+
+```http
+POST /api/transactions
+```
+
+**Request Body:**
+
+```json
+{
+    "wallet_id": 1,
+    "type": "income",
+    "amount": 5000.0,
+    "description": "Monthly salary"
+}
+```
+
+**Response:** `201 Created`
+
+```json
+{
+    "id": 1,
+    "wallet_id": 1,
+    "type": "income",
+    "amount": 5000.0,
+    "description": "Monthly salary",
+    "created_at": "2026-02-25T10:40:00.000000Z",
+    "updated_at": "2026-02-25T10:40:00.000000Z"
+}
+```
+
+**Validation Rules:**
+
+- `wallet_id`: Required, must exist in wallets table
+- `type`: Required, must be either 'income' or 'expense'
+- `amount`: Required, numeric, minimum 0.01
+- `description`: Optional, string
+
+## Usage Examples
+
+### Complete Workflow Example
+
+```bash
+# 1. Create a user
+curl -X POST http://localhost:8000/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Alice Smith","email":"alice@example.com"}'
+
+# 2. Create a wallet for the user
+curl -X POST http://localhost:8000/api/wallets \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":1,"name":"Main Wallet"}'
+
+# 3. Add an income transaction
+curl -X POST http://localhost:8000/api/transactions \
+  -H "Content-Type: application/json" \
+  -d '{"wallet_id":1,"type":"income","amount":3000,"description":"Freelance payment"}'
+
+# 4. Add an expense transaction
+curl -X POST http://localhost:8000/api/transactions \
+  -H "Content-Type: application/json" \
+  -d '{"wallet_id":1,"type":"expense","amount":150,"description":"Groceries"}'
+
+# 5. Check wallet balance
+curl http://localhost:8000/api/wallets/1
+
+# 6. Check user's total balance across all wallets
+curl http://localhost:8000/api/users/1
+```
+
+## Project Structure
+
+```
+backend/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── TransactionController.php  # Handles transaction operations
+│   │       ├── UserController.php         # Handles user operations
+│   │       └── WalletController.php       # Handles wallet operations
+│   └── Models/
+│       ├── Transaction.php                # Transaction model with wallet relationship
+│       ├── User.php                       # User model with wallets relationship
+│       └── Wallet.php                     # Wallet model with transactions & balance logic
+├── database/
+│   ├── migrations/                        # Database schema migrations
+│   └── seeders/                           # Database seeders
+├── routes/
+│   ├── api.php                           # API route definitions
+│   └── web.php                           # Web route definitions
+├── tests/                                # PHPUnit tests
+├── .env.example                          # Environment configuration template
+├── composer.json                         # PHP dependencies
+├── package.json                          # Node.js dependencies
+└── README.md                             # This file
+```
+
+## Key Implementation Details
+
+### Balance Calculation
+
+Wallet balances are calculated dynamically using an Eloquent accessor in the `Wallet` model:
+
+```php
+public function getBalanceAttribute()
+{
+    return $this->transactions->sum(function ($transaction) {
+        return $transaction->type === 'income' ? $transaction->amount : -$transaction->amount;
+    });
+}
+```
+
+This ensures balance is always accurate and reflects the current state of all transactions.
+
+### Data Validation
+
+All API requests are validated using Laravel's Form Request Validation:
+
+- **Users**: Name and unique email required
+- **Wallets**: Valid user ID and wallet name required
+- **Transactions**: Valid wallet ID, transaction type (income/expense), positive amount required
+
+### Database Relationships
+
+- **User** → **Wallets** (One-to-Many): A user can have multiple wallets
+- **Wallet** → **Transactions** (One-to-Many): A wallet can have multiple transactions
+- **Cascade Deletes**: Deleting a user removes all their wallets; deleting a wallet removes all its transactions
